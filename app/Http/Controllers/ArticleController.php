@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Services\Interfaces\ArticleServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Services\Interfaces\ArticleServiceInterface;
 
 class ArticleController extends Controller
 {
@@ -41,7 +41,7 @@ class ArticleController extends Controller
             return response()->json(['error' => $validator->errors(), 'error'], 200);
         }
 
-        $this->articleService->saveArticle($request->title, $request->body, $image_path);
+        $this->articleService->saveArticle($request->title, $request->body, $image_path,  $request->tag_ids);
 
         return response()->json([
             "message" => "article record created"

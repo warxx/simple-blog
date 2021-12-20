@@ -27,5 +27,9 @@ class AppServiceProvider extends ServiceProvider
             'App\Services\Interfaces\ArticleServiceInterface',
             'App\Services\ArticleService'
         );
+        $this->app->bind(
+            'App\Services\Interfaces\TagServiceInterface',
+            'App\Services\TagService'
+        );
     }
 }

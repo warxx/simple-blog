@@ -23,4 +23,18 @@ class ArticleService implements ArticleServiceInterface
         $tags = Tag::find($tagIds);
         $article->tags()->attach($tags);
     }
+
+    public function updateArtcile($article, $request) {
+        $article->update($request->all());
+
+        $tags = Tag::find($request->tag_ids);
+        $article->tags()->sync($tags);
+    }
+
+    public function deleteArticle($article, $request)  {
+        $article->delete();
+
+        $tags = Tag::find($request->tag_ids);
+        $article->tags()->detach($tags);
+    }
 }

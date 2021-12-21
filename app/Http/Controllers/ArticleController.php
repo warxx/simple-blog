@@ -35,7 +35,14 @@ class ArticleController extends Controller
     }
 
     public function showArticlesByTag($tagId) {
-        return Tag::find($tagId)->Articles()->get();
+        $tag = Tag::find($tagId);
+
+        if(!empty($tag))
+            return Tag::find($tagId)->Articles()->get();
+
+        return response()->json([
+            "message" => "There is no tag with that id."
+        ], 201);
     }
 
     public function createArticle(Request $request)

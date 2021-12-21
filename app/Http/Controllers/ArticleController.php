@@ -34,6 +34,10 @@ class ArticleController extends Controller
         return Article::find($id);
     }
 
+    public function showArticlesByTag($tagId) {
+        return Tag::find($tagId)->Articles()->get();
+    }
+
     public function createArticle(Request $request)
     {
         $image_path = $this->getImagePath($request);

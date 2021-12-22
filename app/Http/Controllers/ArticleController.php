@@ -24,9 +24,7 @@ class ArticleController extends Controller
 
     public function index()
     {
-        return response()->json([
-            "message" => "all articles"
-        ], 201);
+        return Article::all();
     }
 
     public function show($id)
